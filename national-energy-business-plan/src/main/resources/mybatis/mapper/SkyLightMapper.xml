@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nari.zyl.mapper.SkyLightMapper" >
+
+    <select id="getSkylightDate" parameterType="java.util.Date" resultType="com.nari.zyl.model.SkyLight">
+        SELECT id, skylight_starttime, skylight_endtime
+        FROM s_plm_skylight
+        WHERE str_to_date(skylight_endtime,'%Y-%m-%d %H:%i:%s') &gt;= #{timestamp}
+               and str_to_date(skylight_starttime,'%Y-%m-%d %H:%i:%s') &lt;= #{timestamp}
+               and railwaysection_no ='000000000000000000201700000000110000'
+    </select>
+
+    <select id="getskyDaysByMonth" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        SELECT count(*)
+        FROM s_plm_skylight
+        WHERE skylight_starttime like '%'||#{sDate}||'%' and railwaysection_no ='000000000000000000201700000000110000'
+    </select>
+</mapper>

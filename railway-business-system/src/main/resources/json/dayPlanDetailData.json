@@ -1,0 +1,103 @@
+{
+  "carModel": "",
+  "carModelTypeApprove": "",
+  "clientSeq": 0,
+  "coalCompany": "",
+  "consigneeAgentId": 0,
+  "consigneeId": 0,
+  "consigneeName": "",
+  "consigneeSiteId": 0,
+  "consigneeSiteName": "",
+  "consignorAgentId": 0,
+  "consignorCode": "",
+  "consignorId": 0,
+  "consignorName": "",
+  "consignorShortName": "",
+  "flowDirectionNames": "",
+  "goodsNames": "",
+  "isConstruct": true,
+  "isManage": true,
+  "lineSeq": 0,
+  "orderFlowDirectionList": [
+    {
+      "approve": "",
+      "flowDirectionId": 0,
+      "flowDirectionName": "",
+      "orderCarModelTypeList": [
+        {
+          "carModelType": "",
+          "flowDirectionId": 0,
+          "orderId": 0,
+          "planApprove": "",
+          "trainCountApprove": 0,
+          "trainCountRequest": 0,
+          "userIdApprove": 0,
+          "userNameApprove": ""
+        }
+      ],
+      "orderId": 0,
+      "pathId": 0,
+      "pathName": "",
+      "stationIdArr": 0,
+      "trainCount": 0,
+      "userId": 0,
+      "userName": ""
+    }
+  ],
+  "orderGoodsList": [
+    {
+      "coalId": 0,
+      "coalName": "",
+      "coalType": "",
+      "goodsId": "",
+      "goodsName": "",
+      "goodsTypeId": "",
+      "goodsTypeName": "",
+      "orderGoodsId": 0,
+      "orderId": 0
+    }
+  ],
+  "orderId": 0,
+  "orderSiteList": [
+    {
+      "orderId": 0,
+      "siteId": 0,
+      "siteName": ""
+    }
+  ],
+  "orderSpecialRequestList": [
+    {
+      "carModel": "",
+      "orderId": 0,
+      "specialRequestId": 0,
+      "trainCount": 0
+    }
+  ],
+  "orderState": "",
+  "orderType": "",
+  "payCode": "",
+  "payerId": 0,
+  "paymentType": "",
+  "planLoad": "",
+  "remark": "",
+  "selfOutType": "",
+  "siteNames": "",
+  "specialRequest": "",
+  "stationIdArr": 0,
+  "stationIdArrEnd": 0,
+  "stationIdDep": 0,
+  "stationLoadStatisticInfo": "",
+  "stationNameArr": "",
+  "stationNameArrEnd": "",
+  "stationNameDep": "",
+  "stationSeq": 0,
+  "trainNumApprove": 0,
+  "trainNumConstruct": 0,
+  "trainNumNoConstruct": 0,
+  "trainNumPlanCompare": 0,
+  "trainNumRequest": 0,
+  "trainNumWeekPlan": 0,
+  "trainNumWeekPlanCompare": 0,
+  "userIdApply": 0,
+  "userNameApply": ""
+}

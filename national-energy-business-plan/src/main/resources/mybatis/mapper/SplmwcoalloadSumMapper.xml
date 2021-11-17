@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nari.zyl.mapper.SplmwcoalloadsumMapper" >
+    <select id="getSplmwcoalloadSumListByCondition" parameterType="com.nari.zyl.model.SplmwdiversionSum" resultType="com.nari.zyl.model.SplmwcoalloadSum">
+        SELECT w_p_id wpId,org_id orgId,
+               station_id stationId,plan_time planTime,trptdirec_id trptdirecId,demarcation_id,sum(total_plan) totalPlan,
+               s_plm_w_task_id splmwtaskId,declare_id declareId,plantype_id plantypeId,datastatus datastatus,org_id orgId,coalsour_id coalsourId,
+               mine_id mineId,station_id stationId,loadline_id loadline_id,loadorconn_id loadorconnId,coaltype_id coaltypeId,traintype_id traintypeId,forbakward_id forbakwardId,
+               demarcation_id demarcationId,destination_id destinationId,load_cost loadCost,plan_time planTime,total_plan totalPlan,evaluation_val evaluationVal,railwayline railwayline
+        FROM s_plm_w_coalload_sum
+        WHERE w_p_id=#{wpId} and org_id= #{orgId} and station_id= #{stationId} and trptdirec_id=#{trptdirecId}
+        GROUP BY plan_time order by plan_time
+    </select>
+
+    <update id="updateSplmwcoalloadSumStatusByCondition" parameterType="java.util.HashMap" >
+        update s_plm_w_coalload_sum
+        set datastatus = #{status}
+        WHERE w_p_id = #{wPId} and org_id = #{orgId} and station_id= #{stationId}
+        and destination_id = #{destinationId} and trptdirec_id = #{trptdirecId}
+    </update>
+
+    <insert id="insertSplmwcoalloadSumByCondition" useGeneratedKeys="true" keyProperty="id" parameterType="com.nari.zyl.model.SplmwcoalloadSum" >
+        insert into s_plm_w_coalload_sum
+        (
+            t_id,w_p_id,s_plm_w_task_id,declare_id,plantype_id,datastatus,org_id,coalsour_id,
+            mine_id,station_id,loadline_id,loadorconn_id,coaltype_id,traintype_id,forbakward_id,
+            trptdirec_id,demarcation_id,destination_id,load_cost,plan_time,total_plan,evaluation_val,railwayline
+        )
+        values(
+            #{tId},#{wpId},#{splmwtaskId},#{declareId},#{plantypeId},#{datastatus},#{orgId},#{coalsourId},
+            #{mineId},#{stationId},#{loadlineId},#{loadorconnId},#{coaltypeId},#{traintypeId},#{forbakwardId},
+            #{trptdirecId},#{demarcationId},#{destinationId},#{loadCost},#{planTime},#{totalPlan},#{evaluationVal},#{railwayline}
+        )
+    </insert>
+
+    <select id="getStationTotalplanSumByStationId" parameterType="java.lang.String" resultType="com.nari.zyl.model.StationTotalplanSum">
+        select w_p_id wPId, station_id stationId, org_id orgId, sum(total_plan) totalPlanSum, plan_time startDate
+        from s_plm_w_coalload_sum
+        where org_id !='' and station_id !=''
+        group by station_id,org_id
+    </select>
+
+    <select id="getNoSatisfiedSplmwcoalloadSumList" parameterType="java.util.HashMap" resultType="com.nari.zyl.model.SplmwcoalloadSum">
+        SELECT w_p_id,org_id org_id,station_id,plan_time,trptdirec_id, sum(total_plan) total_plan
+        FROM s_plm_w_coalload_sum
+        WHERE  org_id= #{orgId} and station_id= #{stationId} and datastatus in('01','04')
+        GROUP BY plan_time
+        order by plan_time
+    </select>
+</mapper>

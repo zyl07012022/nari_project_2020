@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nari.zyl.mapper.SplmwprodmktmatchMapper" >
+    <!--1.根据条件删除s_plm_w_prodmktmatch对应的数据-->
+    <delete id="deleteSplmwprodmktmatchByCondition"  parameterType="java.util.HashMap" >
+        delete from s_plm_w_prodmktmatch
+        WHERE w_p_id = #{wpId} and station_id=#{stationId} and destination_id=#{destinationId}
+              and srailwayrange_id = #{srailwayrangeId} and org_id = #{orgId}
+              and trptdirec_id = #{trptdirecId} and areainorout_id= '01'
+    </delete>
+
+    <!--2.将得出的产能计划计划运力结果，写入s_plm_w_prodmktmatch-->
+    <insert id="insertSplmwprodmktmatch" useGeneratedKeys="true" keyProperty="id" parameterType="com.nari.zyl.model.Splmwprodmktmatch" >
+        insert into s_plm_w_prodmktmatch
+        (t_id,w_p_id,plantype_id,station_id,loadline_id,coalsour_id,srailwayrange_id,org_id,trptdirec_id,
+         areainorout_id,destination_id,erailwayrange_id,total_plan,plan_time)
+        values
+        (
+            #{tId}, #{wpId}, #{plantypeId}, #{stationId}, #{loadlineId}, #{coalsourId}, #{srailwayrangeId},
+            #{orgId},#{trptdirecId},#{areainoroutId}, #{destinationId}, #{erailwayrangeId}, #{totalPlan}, #{planTime}
+        )
+    </insert>
+
+    <!--3.根据条件更新s_plm_w_prodmktmatch对应的数据-->
+    <update id="updateSplmwprodmktmatch"  parameterType="java.util.HashMap" >
+        update s_plm_w_prodmktmatch
+        set total_plan = total_plan + #{dValue} + 0
+        WHERE w_p_id = #{wpId} and station_id=#{stationId}
+              and org_id = #{orgId} and areainorout_id= '01' and plan_time =#{planTime}
+    </update>
+</mapper>

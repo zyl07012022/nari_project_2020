@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nari.zyl.mapper.SplmwdiversionSumMapper" >
+
+    <select id="getSplmwdiversionSumData" parameterType="java.util.HashMap" resultType="com.nari.zyl.model.SplmwdiversionSum">
+        SELECT distinct w_p_id wpId,org_id orgId,station_id stationId,destination_id destinationId,areainorout_id areainoroutId
+        FROM s_plm_w_diversion_sum
+        WHERE areainorout_id = #{areainoroutId} and w_p_id = #{wPId,jdbcType=VARCHAR} and plantype_id in ( 'JHFW_007_01','JHFW_007_02')
+    </select>
+
+    <update id="updateSplmwdiversionSumData" parameterType="com.nari.zyl.model.SplmwdiversionSum">
+        update s_plm_w_diversion_sum
+        set srailwayrangeId = #{srailwayrangeId} , erailwayrange_id= #{erailwayrangeId} , trptdirec_id = #{trptdirecId}
+        where w_p_id = #{wpId} and org_id = #{orgId} and station_id = #{stationId} and destination_id = #{destinationId}
+    </update>
+
+    <select id="getSplmwdiversionSumDataByCondition" parameterType="java.util.HashMap" resultType="com.nari.zyl.model.SplmwdiversionStationSum">
+        SELECT w_p_id wPId,station_id stationId,org_id orgId,sum(total_plan) totalPlan,plan_time planTime
+        FROM s_plm_w_diversion_sum
+        WHERE areainorout_id = #{areainoroutId} and station_id=#{stationId} and org_id=#{orgId}
+    </select>
+
+    <select id="getSplmwdiversionSenvenDaysData" parameterType="java.lang.String" resultType="com.nari.zyl.model.SplmwdiversionSum">
+        SELECT w_p_id wpId,station_id stationId,
+               org_id orgId,
+               sum(total_plan) totalPlan,
+               plan_time planTime
+        FROM  s_plm_w_diversion_sum
+        WHERE  w_p_id=#{wpid}  and org_id=#{orgNo} and station_id=#{stationId}
+        and areainorout_id = #{areainoroutId} and plantype_id in ( 'JHFW_007_01','JHFW_007_02')
+        GROUP BY plan_time order by plan_time
+    </select>
+
+</mapper>

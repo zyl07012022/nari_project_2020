@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nari.zyl.mapper.ScoaltloaddayCompleteMapper" >
+
+    <select id="getScoaltloaddayCompleteSum" parameterType="java.lang.String" resultType="com.nari.zyl.model.ScoaltloaddayCompleteSum">
+        SELECT organization_id orgId,sum(load_complete) loadCompleteSum,load_line_id stationId
+        FROM S_COAL_T_LOADDAYCOMPLETE
+        WHERE organization_id= #{orgId} and load_line_id= #{stationId} and t_date like '%'||#{tDate}||'%'
+    </select>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.family.zyl.mapper.UserDbMapper">
+    <!--1.增加用户信息-->
+    <insert id="addUserInfo" parameterType="com.family.zyl.model.User" >
+        insert into t_user_info(id,name) values(#{id},#{name})
+    </insert>
+
+    <!--2.删除用户信息-->
+    <delete id="deleteUserInfo" parameterType="java.lang.String">
+        delete from t_user_info where id = #{id}
+    </delete>
+
+    <!--3.修改用户信息-->
+    <update id="updateUserInfo">
+        update t_user_info set name = #{name} where id = #{id}
+    </update>
+
+    <!--4.查询所有用户信息-->
+    <select id="selectAllUser" resultType="com.family.zyl.model.User">
+        select id, name, role_id, position, image, sex, birth, mobile, address
+        from t_user_info
+        where order_no !='' and order_no is not null order by order_no
+    </select>
+
+</mapper>

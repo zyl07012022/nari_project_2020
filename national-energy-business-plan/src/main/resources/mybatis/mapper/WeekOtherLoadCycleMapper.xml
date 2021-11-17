@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nari.zyl.mapper.WeekOtherLoadCycleMapper" >
+
+    <select id="getPlanById" parameterType="java.lang.String"  resultType="com.nari.zyl.model.Cycle">
+        SELECT w_p_begin_time_date wPBeginTimeDate,w_p_end_time_date wPEndTimeDate
+        FROM s_plm_cycle
+        WHERE id = #{wPId}
+    </select>
+
+</mapper>

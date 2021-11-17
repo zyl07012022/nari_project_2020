@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nari.zyl.mapper.SplmmspliteditMapper" >
+
+    <select id="getSplmmspliteditListByCondition" parameterType="com.nari.zyl.model.SplmwdiversionSum" resultType="com.nari.zyl.model.Splmmsplitedit">
+        SELECT distinct w_p_id wpid,quota_ym quotaYm,org_no orgNo,station_id stationId,
+               areainorout_id areainoroutId,month_quantity monthQuantity,nosky_num noskyNum,sky_num skyNum
+        FROM s_plm_m_splitedit
+        WHERE w_p_id=#{wpId} and org_no= #{orgId} and station_id= #{stationId}
+        and areainorout_id =#{areainoroutId}  and trptdirec_id=#{trptdirecId}
+    </select>
+
+    <select id="getSplmmspliteditByCondition" parameterType="com.nari.zyl.model.SplmwdiversionSum" resultType="com.nari.zyl.model.SkyLightDayPlan">
+        SELECT distinct w_p_id wPId,station_id stationId,sky_num skySum,nosky_num noSkySum
+        FROM s_plm_m_splitedit
+        WHERE w_p_id = #{wPId} and org_no= #{orgNo} and station_id = #{stationId} and quota_ym = #{sDate}
+        order by quota_ym
+    </select>
+
+</mapper>
