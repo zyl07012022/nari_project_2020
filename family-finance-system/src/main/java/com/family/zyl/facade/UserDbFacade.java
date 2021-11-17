@@ -18,12 +18,12 @@ public class UserDbFacade {
     @Autowired
     private UserDbService userDbService;
 
-    //1.增加用户信息
+    //1.增加用户信息:
     public CommonResult addUserInfo(User user) {
         CommonResult result = new CommonResult();
         //调用插入方法：
         int out = userDbService.addUserInfo(user);
-        if(out >=1 ){
+        if(out >=1){
             result.setCode(1);
             result.setMessage("success");
         }else{
